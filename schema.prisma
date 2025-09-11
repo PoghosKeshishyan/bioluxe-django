@@ -1,0 +1,363 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String
+  password String
+}
+
+model Category {
+  id            String  @id @default(uuid())
+  lang          String
+  descr         String
+  image         String
+  title         String
+  category_name String?
+}
+
+model Item {
+  id             String  @id @default(uuid())
+  category_name  String
+  product_number String  @unique 
+  price          Float
+  heart_icon     Boolean
+  color          String
+  size           String
+  group_code     String?
+
+  title            Json
+  btn_text         Json
+  descr            Json
+  product_material Json
+  about_delivery   Json
+
+  images              ProductImage[]
+  createdAt           DateTime              @default(now())
+  HomePagePopularItem HomePagePopularItem[]
+}
+
+model ProductImage {
+  id        String @id @default(uuid())
+  image     String
+  productId String
+  product   Item   @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model HomePagePopularItem {
+  id        String   @id @default(uuid())
+  itemId    String
+  item      Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  order     Int?
+  createdAt DateTime @default(now())
+}
+
+// Header - start
+// model Navbar {
+//   id      String    @id @default(uuid())
+//   lang    String
+//   title   String
+//   route   String
+//   submenu Submenu[]
+// }
+
+// model Submenu {
+//   id       String  @id @default(uuid())
+//   lang     String
+//   title    String
+//   route    String
+//   Navbar   Navbar? @relation(fields: [navbarId], references: [id])
+//   navbarId String?
+// }
+// Header - end
+
+model Items_header {
+  id            String @id @default(uuid())
+  lang          String
+  image         String
+  category_name String
+  title         String
+  descr         String
+}
+
+model Footer_privacy_policy {
+  id    String @id @default(uuid())
+  lang  String
+  title String
+  url   String
+}
+
+model Logo {
+  id    String @id @default(uuid())
+  image String
+}
+
+model Shopping_bag_page {
+  id                             String @id @default(uuid())
+  lang                           String
+  main                           String
+  title                          String
+  empty_error_text               String
+  quantity_and_prais_text        String
+  size_title                     String
+  heart_text                     String
+  btn_text                       String
+  order_summary_field            String
+  total_text_field               String
+  form_input_name_placeholder    String
+  form_input_tel_placeholder     String
+  form_input_address_placeholder String
+  form_input_checkbox_text       String
+  form_btn_text                  String
+}
+
+// Header start
+// model Header_icon {
+//   id                  String @id @default(uuid())
+//   search_icon         String
+//   heart_icon          String
+//   cart_icon           String
+//   language_arrow_icon String
+// }
+
+// model Language {
+//   id    String  @id @default(uuid())
+//   label String
+//   image String
+//   lang  String?
+// }
+// Header end
+
+model Slider {
+  id               String @id @default(uuid())
+  lang             String
+  title            String
+  descr            String
+  btn_text         String
+  btn_url          String
+  background_image String
+  image            String
+}
+
+model Slider_icon {
+  id               String @id @default(uuid())
+  cloud_icon       String
+  left_arrow_icon  String
+  right_arrow_icon String
+}
+
+model Homepage_about_us {
+  id       String @id @default(uuid())
+  lang     String
+  heading  String
+  descr    String
+  btn_text String
+  btn_url  String
+  image_1  String
+  image_2  String
+}
+
+model Homepage_popular_item_heading {
+  id    String @id @default(uuid())
+  lang  String
+  title String
+}
+
+model Homepage_new_arrivals_heading {
+  id    String @id @default(uuid())
+  lang  String
+  title String
+}
+
+model Homepage_contact {
+  id        String @id @default(uuid())
+  lang      String
+  heading   String
+  map_image String
+  map_url   String
+}
+
+model Footer_info {
+  id           String @id @default(uuid())
+  lang         String
+  address      String
+  phone        String
+  email        String
+  address_icon String
+  phone_icon   String
+  email_icon   String
+}
+
+model Footer_social_links {
+  id   String @id @default(uuid())
+  icon String
+  url  String
+}
+
+model Homepage_categories_heading {
+  id    String @id @default(uuid())
+  lang  String
+  title String
+}
+
+model Contact_title {
+  id        String @id @default(uuid())
+  lang      String
+  title     String
+  image_url String
+}
+
+model Contact_info {
+  id           String @id @default(uuid())
+  lang         String
+  map_image    String @db.Text
+  address      String
+  phone        String
+  email        String
+  address_icon String
+  phone_icon   String
+  email_icon   String
+}
+
+model Contact_form {
+  id                      String @id @default(uuid())
+  lang                    String
+  title                   String
+  input_placeholder_name  String
+  input_placeholder_email String
+  input_placeholder_phone String
+  btn_text                String
+  priacy_policy_text      String
+  priacy_policy_url       String
+}
+
+model About_us {
+  id      String @id @default(uuid())
+  lang    String
+  heading String
+  image   String
+}
+
+model About_text {
+  id       String @id @default(uuid())
+  lang     String
+  heading  String
+  content1 String
+  content2 String @db.Text
+  image    String
+}
+
+model Navigation_arrow {
+  id    String @id @default(uuid())
+  type  String
+  image String
+}
+
+model Saved_heart_item {
+  id                 String @id @default(uuid())
+  lang               String
+  heading            String
+  add_button_icon    String
+  add_button_text    String
+  remove_button_icon String
+  remove_button_text String
+}
+
+model Saved_basket_item {
+  id                 String @id @default(uuid())
+  lang               String
+  heading            String
+  quantity           String
+  remove_button_icon String
+  remove_button_text String
+}
+
+model Basket_heart_view_link {
+  id   String @id @default(uuid())
+  lang String
+  text String
+  url  String
+}
+
+model Item_page_field {
+  id                        String @id @default(uuid())
+  lang                      String
+  size_text_field           String
+  size_text_field_2         String
+  descr_text_field          String
+  product_number_text_field String
+  material_text_field       String
+  about_delivery_text_field String
+  not_available_text_field  String
+}
+
+model Liked_product_heading {
+  id    String @id @default(uuid())
+  lang  String
+  title String
+}
+
+model Item_link {
+  id      String @id @default(uuid())
+  lang    String
+  item    String
+  catalog String
+  cribs   String
+}
+
+model Info_about_delivery {
+  id    String @id @default(uuid())
+  lang  String
+  title String
+  texts Json
+}
+
+model Categories_link {
+  id        String @id @default(uuid())
+  lang      String
+  main      String
+  catalog   String
+  filter_by String
+  category  String
+  materials String
+  price     String
+  sort_by   String
+  from      String
+  to        String
+}
+
+model Homepage_partners_heading {
+  id      String @id @default(uuid())
+  lang    String
+  heading String
+}
+
+model Homepage_partner {
+  id    String @id @default(uuid())
+  image String
+}
+
+model Item_faq_heading {
+  id      String @id @default(uuid())
+  lang    String
+  heading String
+}
+
+model Item_faq {
+  id       String @id @default(uuid())
+  lang     String
+  question String
+  answer   String
+}

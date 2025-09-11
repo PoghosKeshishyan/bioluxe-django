@@ -1,0 +1,14 @@
+Debug=True
+
+
+
+Այսպես development server–ը (runserver) կարող է մատուցել uploaded նկարները։
+Production-ում պետք է ուրիշ մեթոդ օգտագործել (օր. Nginx կամ cloud storage)։
+petq a nayel ---> base/urls.py
+
+
+
+
+
+
+navbar --> submenu --> submenus

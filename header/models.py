@@ -30,6 +30,10 @@ class HeaderIcon(models.Model):
     cart_icon = models.FileField(upload_to='header_icons/')
     language_arrow_icon = models.FileField(upload_to='header_icons/')
     created_at = models.DateTimeField(auto_now_add=True)
+        
+    class Meta:
+        verbose_name = "icon"
+        verbose_name_plural = "Icons"
     
 
 class Language(models.Model):

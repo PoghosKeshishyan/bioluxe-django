@@ -11,11 +11,19 @@ class FooterInfo(models.Model):
     email_icon = models.FileField(upload_to='footer/')
     created_at = models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+        verbose_name = "Footer Info"
+        verbose_name_plural = "Infos"
+    
 
 class FooterSocialLink(models.Model):
     icon = models.FileField(upload_to='footer/')
     url = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Footer Social link"
+        verbose_name_plural = "Social links"
     
 
 class FooterPrivacyPolicy(models.Model):
@@ -23,4 +31,8 @@ class FooterPrivacyPolicy(models.Model):
     title = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Footer Privacy policy"
+        verbose_name_plural = "Privacy policy"
     

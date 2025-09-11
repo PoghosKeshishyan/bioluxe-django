@@ -1,17 +1,26 @@
 from django.db import models
 
 
-class Logo(models.Model):
+class Logo(models.Model):       
     image = models.FileField(upload_to='global/logo/')
+    
+    class Meta:
+        verbose_name = "Logo"
+        verbose_name_plural = "Logo"
 
 
-class Category(models.Model):
+class Category(models.Model):       
     lang = models.CharField(max_length=5)
     title = models.CharField(max_length=255)
     descr = models.CharField(max_length=255)
     image = models.FileField(upload_to='global/category/')
     category_name = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
     
 
 class Item(models.Model):
@@ -28,6 +37,10 @@ class Item(models.Model):
     product_material = models.JSONField()
     about_delivery = models.JSONField()
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Item"
+        verbose_name_plural = "Items"
 
 
 class ProductImage(models.Model):

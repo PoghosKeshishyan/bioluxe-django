@@ -31,7 +31,7 @@ class HomePagePopularItem(models.Model):
 API NERI VAXT SAX NAYEL ZAPROSSNER@
 
 
-
+ARTAKIN CUYC TAL --> base/admin.py   --- base/setting.py/installedApps
 
 
 

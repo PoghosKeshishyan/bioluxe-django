@@ -1,13 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from django.contrib.auth.models import User, Group
 from .models import Navbar, Submenu, HeaderIcon, Language
-
-
-admin.site.site_header = 'BIO LUXE'
-admin.site.index_title = 'Welcome to Bio Luxe Admin panel'
-admin.site.unregister(User)
-admin.site.unregister(Group)
 
 
 class SubmenuInline(admin.TabularInline):

@@ -92,13 +92,6 @@ model Items_header {
   descr         String
 }
 
-model Footer_privacy_policy {
-  id    String @id @default(uuid())
-  lang  String
-  title String
-  url   String
-}
-
 model Logo {
   id    String @id @default(uuid())
   image String
@@ -189,22 +182,29 @@ model Homepage_contact {
   map_url   String
 }
 
-model Footer_info {
-  id           String @id @default(uuid())
-  lang         String
-  address      String
-  phone        String
-  email        String
-  address_icon String
-  phone_icon   String
-  email_icon   String
-}
+// model Footer_info {
+//   id           String @id @default(uuid())
+//   lang         String
+//   address      String
+//   phone        String
+//   email        String
+//   address_icon String
+//   phone_icon   String
+//   email_icon   String
+// }
 
-model Footer_social_links {
-  id   String @id @default(uuid())
-  icon String
-  url  String
-}
+// model Footer_social_links {
+//   id   String @id @default(uuid())
+//   icon String
+//   url  String
+// }
+
+// model Footer_privacy_policy {
+//   id    String @id @default(uuid())
+//   lang  String
+//   title String
+//   url   String
+// }
 
 model Homepage_categories_heading {
   id    String @id @default(uuid())

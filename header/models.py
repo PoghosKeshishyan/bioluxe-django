@@ -5,10 +5,10 @@ class Navbar(models.Model):
     lang = models.CharField(max_length=5)
     title = models.CharField(max_length=50)
     route = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.lang} -> {self.title}'
-    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Submenu(models.Model):

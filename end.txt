@@ -1,5 +1,6 @@
 Debug=True
 
+SECRET KEY - n vortex pahel ??? .env i mej ???
 
 
 Այսպես development server–ը (runserver) կարող է մատուցել uploaded նկարները։

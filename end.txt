@@ -8,8 +8,36 @@ Production-ում պետք է ուրիշ մեթոդ օգտագործել (օր. 
 petq a nayel ---> base/urls.py
 
 
-
+global_data/items --> add i jamanak, uzum em color@ lini input ov 
 
 
 
 navbar --> submenu --> submenus
+
+
+itemneri jsonner@ dzel adminkic
+
+
+
+
+class HomePagePopularItem(models.Model):
+    item = models.ForeignKey(Item, related_name="home_page_popular_items", on_delete=models.CASCADE)
+    order = models.IntegerField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+
+
+API NERI VAXT SAX NAYEL ZAPROSSNER@
+
+
+
+
+
+
+// CHSARQEL
+model Navigation_arrow {
+  id    String @id @default(uuid())
+  type  String
+  image String
+}

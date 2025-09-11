@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'header.apps.HeaderConfig',
     'footer.apps.FooterConfig',
+    'global_data.apps.GlobalDataConfig',
 ]
 
 MIDDLEWARE = [

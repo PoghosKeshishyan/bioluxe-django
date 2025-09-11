@@ -24,7 +24,7 @@ class NavbarAdmin(admin.ModelAdmin):
     
 @admin.register(HeaderIcon)
 class HeaderIconAdmin(admin.ModelAdmin):
-    list_display = ('id', 'search_icon_display', 'heart_icon_display', 'cart_icon_display', 'language_arrow_icon_display')
+    list_display = ('id', 'search_icon_display', 'heart_icon_display', 'cart_icon_display')
     
     def _preview(self, obj, field_name):
         file = getattr(obj, field_name)
@@ -43,10 +43,6 @@ class HeaderIconAdmin(admin.ModelAdmin):
     def cart_icon_display(self, obj):
         return self._preview(obj, 'cart_icon')
     cart_icon_display.short_description = 'Cart Icon'
-
-    def language_arrow_icon_display(self, obj):
-        return self._preview(obj, 'language_arrow_icon')
-    language_arrow_icon_display.short_description = 'Language Arrow Icon'
     
 
 @admin.register(Language)

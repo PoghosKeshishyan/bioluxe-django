@@ -1,8 +1,12 @@
 Debug=True
 
+
+++++++++++++++++++++++++++
 SECRET KEY - n vortex pahel ??? .env i mej ???
 
 
+
+++++++++++++++++++++++++++
 Այսպես development server–ը (runserver) կարող է մատուցել uploaded նկարները։
 Production-ում պետք է ուրիշ մեթոդ օգտագործել (օր. Nginx կամ cloud storage)։
 petq a nayel ---> base/urls.py
@@ -35,6 +39,7 @@ class HomePagePopularItem(models.Model):
 API NERI VAXT SAX NAYEL ZAPROSSNER@
 
 
++++++++++++++++++++++++++++++++++++++++++
 ARTAKIN CUYC TAL --> base/admin.py   --- base/setting.py/installedApps
 
 
@@ -53,5 +58,5 @@ from django.contrib.sites.models import Site
 admin.site.unregister(Site) 
 
 
-
++++++++++++++++++
 im global apperi admin.py i hertakanutyun@ cuyc tal Artakin

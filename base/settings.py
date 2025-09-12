@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'base',
     'header.apps.HeaderConfig',
     'footer.apps.FooterConfig',
     'global_data.apps.GlobalDataConfig',

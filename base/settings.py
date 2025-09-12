@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'header.apps.HeaderConfig',
     'footer.apps.FooterConfig',
     'global_data.apps.GlobalDataConfig',
+    'home_page.apps.HomePageConfig',
+    'about_page.apps.AboutPageConfig',
+    'contact_page.apps.ContactPageConfig',
+    'shopping_bag_page.apps.ShoppingBagPageConfig',
 ]
 
 MIDDLEWARE = [

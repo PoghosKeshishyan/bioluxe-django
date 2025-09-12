@@ -12,7 +12,7 @@ admin.site.unregister(Group)
 # App ordering function
 # ====================================
 
-DESIRED_APP_ORDER = ['header', 'footer', 'global_data']
+DESIRED_APP_ORDER = ['header', 'footer', 'global_data', 'home_page', 'about_page', 'contact_page', 'shopping_bag_page']
 
 class OrderedAdminSite(admin.AdminSite):
     def get_app_list(self, request):

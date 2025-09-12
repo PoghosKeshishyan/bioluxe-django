@@ -1,7 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Navbar, Submenu, HeaderIcon, Language
+from .models import (
+    Navbar, Submenu, HeaderIcon, Language,
+    SavedHeartItem, SavedBasketItem, BasketHeartViewLink
+)
 
+admin.site.register(BasketHeartViewLink)
 
 class SubmenuInline(admin.TabularInline):
     model = Submenu
@@ -48,3 +52,30 @@ class LanguageAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" width="70" />', obj.image.url)
         return "-"
     image_display.short_description = 'Image'
+    
+
+@admin.register(SavedHeartItem)
+class SavedHeartItemAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "lang",
+        "heading",
+        "add_button_icon",
+        "add_button_text",
+        "remove_button_icon",
+        "remove_button_text",
+    )
+    ordering = ("created_at",)
+
+
+@admin.register(SavedBasketItem)
+class SavedBasketItemAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "lang",
+        "heading",
+        "quantity",
+        "remove_button_icon",
+        "remove_button_text",
+    )
+    ordering = ("created_at",)

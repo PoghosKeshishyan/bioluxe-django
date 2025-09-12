@@ -100,6 +100,77 @@ model Items_header {
   descr         String
 }
 
+// GLOBAL
+model Item_page_field {
+  id                        String @id @default(uuid())
+  lang                      String
+  size_text_field           String
+  size_text_field_2         String
+  descr_text_field          String
+  product_number_text_field String
+  material_text_field       String
+  about_delivery_text_field String
+  not_available_text_field  String
+}
+
+// GLOBAL
+model Item_link {
+  id      String @id @default(uuid())
+  lang    String
+  item    String
+  catalog String
+  cribs   String
+}
+
+
+// GLOBAL
+model Liked_product_heading {
+  id    String @id @default(uuid())
+  lang  String
+  title String
+}
+
+
+// GLOBAL
+model Categories_link {
+  id        String @id @default(uuid())
+  lang      String
+  main      String
+  catalog   String
+  filter_by String
+  category  String
+  materials String
+  price     String
+  sort_by   String
+  from      String
+  to        String
+}
+
+
+
+// GLOBAL
+model Item_faq_heading {
+  id      String @id @default(uuid())
+  lang    String
+  heading String
+}
+
+// GLOBAL
+model Item_faq {
+  id       String @id @default(uuid())
+  lang     String
+  question String
+  answer   String
+}
+
+// infoAbout_delivery -- GLOBAL
+model Info_about_delivery {
+  id    String @id @default(uuid())
+  lang  String
+  title String
+  texts Json
+}
+
 
 
 // CART ---------------
@@ -221,77 +292,12 @@ model Navigation_arrow {
 
 
 
-// GLOBAL
-model Item_page_field {
-  id                        String @id @default(uuid())
-  lang                      String
-  size_text_field           String
-  size_text_field_2         String
-  descr_text_field          String
-  product_number_text_field String
-  material_text_field       String
-  about_delivery_text_field String
-  not_available_text_field  String
-}
-
-// GLOBAL
-model Item_link {
-  id      String @id @default(uuid())
-  lang    String
-  item    String
-  catalog String
-  cribs   String
-}
-
-
-// GLOBAL
-model Liked_product_heading {
-  id    String @id @default(uuid())
-  lang  String
-  title String
-}
-
-
-// infoAbout_delivery -- GLOBAL
-model Info_about_delivery {
-  id    String @id @default(uuid())
-  lang  String
-  title String
-  texts Json
-}
-
-
-// GLOBAL
-model Categories_link {
-  id        String @id @default(uuid())
-  lang      String
-  main      String
-  catalog   String
-  filter_by String
-  category  String
-  materials String
-  price     String
-  sort_by   String
-  from      String
-  to        String
-}
 
 
 
-// GLOBAL
-model Item_faq_heading {
-  id      String @id @default(uuid())
-  lang    String
-  heading String
-}
 
-// GLOBAL
-model Item_faq {
-  id       String @id @default(uuid())
-  lang     String
-  question String
-  answer   String
-}
+
+
 
 
 

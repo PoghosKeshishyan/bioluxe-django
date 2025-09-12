@@ -12,7 +12,6 @@ admin.site.unregister(Group)
 # App ordering function
 # ====================================
 
-
 DESIRED_APP_ORDER = ['header', 'footer', 'global_data']
 
 class OrderedAdminSite(admin.AdminSite):

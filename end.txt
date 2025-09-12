@@ -14,6 +14,10 @@ global_data/items --> add i jamanak, uzum em color@ lini input ov
 
 navbar --> submenu --> submenus
 
+Categories_link -> from@ dardznel --> from_field
+Categories_link -> to - n dardznel --> to_field
+
+
 
 itemneri jsonner@ dzel adminkic
 
@@ -41,3 +45,13 @@ model Navigation_arrow {
   type  String
   image String
 }
+
+
+
+// harcnel Artakin
+from django.contrib.sites.models import Site
+admin.site.unregister(Site) 
+
+
+
+im global apperi admin.py i hertakanutyun@ cuyc tal Artakin

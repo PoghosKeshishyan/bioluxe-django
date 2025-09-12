@@ -46,4 +46,6 @@ class FooterSocialLinkAdmin(admin.ModelAdmin):
 @admin.register(FooterPrivacyPolicy)
 class FooterPrivacyPolicyAdmin(admin.ModelAdmin):
     list_display = ('id', 'lang', 'title', 'url')
+    list_filter = ('lang',)
     ordering = ('created_at',)
+    

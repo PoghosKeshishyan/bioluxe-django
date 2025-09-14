@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import (
-    Slider, SliderIcon, AboutUs, PopularItemHeading, NewArrivalsHeading,
-    ContactUs, CategoriesHeading, PartnersHeading, Partner
+    Slider, SliderIcon, AboutUs, PopularItemHeading, 
+    NewArrivalsHeading, ContactUs, CategoriesHeading, PartnersHeading, Partner
 )
 
 
@@ -12,7 +12,7 @@ admin.site.register(NewArrivalsHeading)
 admin.site.register(CategoriesHeading)
 admin.site.register(PartnersHeading)
 
-
+        
 @admin.register(AboutUs)
 class AboutUsAdmin(admin.ModelAdmin):
     list_display = ("lang", "heading", "btn_text", "btn_url", "image1_preview", "image2_preview")

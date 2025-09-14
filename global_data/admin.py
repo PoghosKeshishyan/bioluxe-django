@@ -8,7 +8,6 @@ from .models import (
 )
 
 admin.site.register(Categories_link)
-# admin.site.register(ItemHeader)
 admin.site.register(ItemPageField)
 admin.site.register(ItemLink)
 admin.site.register(ItemFaqHeading)
@@ -66,12 +65,13 @@ class ProductImageInline(admin.TabularInline):
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     form = ItemForm
-    list_filter = ('category_name',)
+    list_filter = ('category_name', 'is_popular')
 
     list_display = (
-        'id', 'category_name', 'product_number', 'price',
+        'id', 'is_popular', 'category_name', 'product_number', 'price',
         'color_display', 'size', 'group_code', 'first_image_preview',
     )
+    
     ordering = ('created_at',) 
     inlines = [ProductImageInline]
 
@@ -97,6 +97,18 @@ class ItemAdmin(admin.ModelAdmin):
             )
         return "-"
     first_image_preview.short_description = "Image"
+    
+    def get_image(self, obj):
+        first_image = obj.images.first()
+        if first_image and first_image.image:
+            return format_html('<img src="{}" width="50" height="50" style="object-fit: cover;" />', 
+                             first_image.image.url)
+        return "No Image"
+    get_image.short_description = 'Image'
+    
+    def get_search_results(self, request, queryset, search_term):
+        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        return queryset, use_distinct
     
 
 @admin.register(ItemHeader)

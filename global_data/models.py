@@ -39,6 +39,7 @@ class Categories_link(models.Model):
        
 
 class Item(models.Model):
+    is_popular = models.BooleanField(default=False)
     category_name = models.CharField(max_length=100)
     product_number = models.CharField(max_length=255, unique=True)
     price = models.FloatField()

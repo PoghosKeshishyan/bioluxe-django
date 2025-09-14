@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'Lib';
+    src: url('./fonts/LIBERATIONSERIF-BOLD.TTF') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lib';
+    src: url('./fonts/LIBERATIONSERIF-REGULAR.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('./fonts/UBUNTU.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    bottom: 0;
+}
+
+body {
+    padding: 50px;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-family: 'Lib';
+}
+
+p {
+    font-size: 25px;
+    font-family: 'Ubuntu';
+}
+
+hr {
+    margin: 15px 0;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-family: 'Lib';
+}
+
+ul li a {
+    color: blue;
+    font-size: 22px;
+    margin-bottom: 5px;
+    display: block;
+    font-family: 'Ubuntu';
+}

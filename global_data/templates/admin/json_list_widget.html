@@ -1,0 +1,25 @@
+<div id="json-list-widget">
+  {% for val in widget.value %}
+    <div style="margin-bottom:5px;">
+      <textarea name="{{ widget.name }}" style="width:270px; height: 100px; margin-bottom: 10px;">{{ val|escape }}</textarea>
+      <button type="button" onclick="this.parentNode.remove()">✖</button>
+    </div>
+  {% endfor %}
+
+  <div id="add-row-container"></div>
+
+  <button type="button" onclick="addRow()">+ Ավելացնել տեքստ</button>
+</div>
+
+<script>
+function addRow() {
+  const container = document.getElementById("add-row-container");
+  const div = document.createElement("div");
+  div.style.marginBottom = "5px";
+  div.innerHTML = `
+    <textarea name="{{ widget.name }}"  style="width:270px; height: 100px; margin-bottom: 10px;"></textarea>
+    <button type="button" onclick="this.parentNode.remove()">✖</button>
+  `;
+  container.appendChild(div);
+}
+</script>

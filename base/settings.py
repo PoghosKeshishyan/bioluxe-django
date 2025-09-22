@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'root',
+    "django_json_widget",
     'header.apps.HeaderConfig',
     'footer.apps.FooterConfig',
     'global_data.apps.GlobalDataConfig',

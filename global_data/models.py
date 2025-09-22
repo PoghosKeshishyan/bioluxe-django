@@ -106,8 +106,8 @@ class ItemFaqHeading(models.Model):
   
 class ItemFaq(models.Model):
     lang = models.CharField(max_length=5)
-    question = models.CharField(max_length=255)
-    answer = models.CharField(max_length=255)
+    question = models.TextField()
+    answer = models.TextField()
             
     def __str__(self):
         return self.question

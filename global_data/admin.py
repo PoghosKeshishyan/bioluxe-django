@@ -70,7 +70,7 @@ class JSONKeyValueWidget(forms.Widget):
         values = data.getlist(f"{name}_value")
         result = {}
         for k, v in zip(keys, values):
-            if k.strip():  # key դատարկ չէ
+            if k.strip():
                 result[k] = v
         return result
 

@@ -1,2 +1,0 @@
-Debug=True
-IMG - IN DEPLOY 

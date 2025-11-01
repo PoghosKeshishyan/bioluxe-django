@@ -1,4 +1,21 @@
 from django.db import models
+import time
+import random
+
+
+def generate_product_number():
+    # 1970 tvich minchev hima qani ms e ancel ev inchvor randov tiv
+    timestamp = int(time.time() * 1000)
+    random_number = random.randint(1000, 9999)
+    return f"{timestamp}-{random_number}"
+
+
+def default_btn_text():
+    return {
+        "en": "ADD TO BAG",
+        "ru": "ДОБАВИТЬ В КОРЗИНУ",
+        "am": "ԱՎԵԼԱՑՆԵԼ ԶԱՄԲՅՈՒՂԻՆ"
+    }
 
 
 class Logo(models.Model):       
@@ -17,9 +34,13 @@ class Category(models.Model):
     category_name = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+     
 
 
 class Categories_link(models.Model):
@@ -40,18 +61,18 @@ class Categories_link(models.Model):
 
 class Item(models.Model):
     is_popular = models.BooleanField(default=False)
+    is_new_arrival = models.BooleanField(default=False)
     category_name = models.CharField(max_length=100)
-    product_number = models.CharField(max_length=255, unique=True)
+    product_number = models.CharField(max_length=255, unique=True, default=generate_product_number)
     price = models.FloatField()
     heart_icon = models.BooleanField(default=False)
     color = models.CharField(max_length=100)
     size = models.CharField(max_length=100)
     group_code = models.CharField(max_length=255, blank=True, null=True)
     title = models.JSONField()
-    btn_text = models.JSONField()
+    btn_text = models.JSONField(default=default_btn_text)
     descr = models.JSONField()
     product_material = models.JSONField()
-    about_delivery = models.JSONField()
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
@@ -59,9 +80,30 @@ class Item(models.Model):
         verbose_name_plural = "Items"
 
 
+
+class ItemAboutDelivery(models.Model):
+    about_delivery = models.JSONField()
+    
+    def __str__(self):
+        return "About delivery | О доставке | Առաքման մասին"
+    
+    class Meta:
+        verbose_name = "Item About Deilivery"
+        verbose_name_plural = "Items About Deilivery"
+
+
+
 class ProductImage(models.Model):
     image = models.FileField(upload_to='global/items/')
+    is_general = models.BooleanField(default=False)
     product = models.ForeignKey(Item, related_name="images", on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        # Remove automatic setting of is_general
+        # Let the admin interface handle it through radio buttons
+        super().save(*args, **kwargs)
+
+
 
 
 class ItemHeader(models.Model):
@@ -128,3 +170,5 @@ class InfoAboutDelivery(models.Model):
         
     def __str__(self):
         return self.title
+
+

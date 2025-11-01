@@ -1,0 +1,64 @@
+{% load i18n admin_urls static %}
+<div class="js-inline-admin-formset inline-group" id="{{ inline_admin_formset.formset.prefix }}-group"
+     data-inline-type="tabular"
+     data-inline-formset="{{ inline_admin_formset.inline_formset_data }}">
+<fieldset class="module {{ inline_admin_formset.classes }}">
+  {{ inline_admin_formset.formset.management_form }}
+  {{ inline_admin_formset.formset.non_form_errors }}
+
+  <table class="table">
+    <thead><tr>
+      {% for field in inline_admin_formset.fields %}
+        {% if not field.widget.is_hidden %}
+          <th class="column-{{ field.name }}{% if field.required %} required{% endif %}">{{ field.label|capfirst }}
+          {% if field.help_text %}&nbsp;<img src="{% static "admin/img/icon-unknown.svg" %}" class="help help-tooltip" width="10" height="10" alt="({{ field.help_text|striptags }})" title="{{ field.help_text|striptags }}">{% endif %}
+          </th>
+        {% endif %}
+      {% endfor %}
+    </tr></thead>
+
+    <tbody>
+    {% for inline_admin_form in inline_admin_formset %}
+      {% if inline_admin_form.form.non_field_errors %}
+        <tr><td colspan="{{ inline_admin_form|cell_count }}">{{ inline_admin_form.form.non_field_errors }}</td></tr>
+      {% endif %}
+      <tr class="form-row {% if inline_admin_form.original or inline_admin_form.show_url %}has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
+          id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}">
+        {% for fieldset in inline_admin_form %}
+          {% for line in fieldset %}
+            {% for field in line %}
+              <td class="field-{{ field.field.name }}">
+              {% if field.is_readonly %}
+                  <p>{{ field.contents }}</p>
+              {% else %}
+                  {{ field.field.errors.as_ul }}
+                  {% if field.field.name == 'is_general' %}
+                    {# Custom radio button rendering #}
+                    <div class="radio-group">
+                      {% for choice in field.field.choices %}
+                        <label class="radio-label">
+                          <input type="radio" name="{{ field.field.html_name }}" 
+                                 value="{{ choice.0 }}" 
+                                 {% if choice.0|stringformat:"s" == field.field.value|stringformat:"s" %}checked{% endif %}
+                                 class="radiolist">
+                          {{ choice.1 }}
+                        </label>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ field.field }}
+                  {% endif %}
+              {% endif %}
+              </td>
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+        {% if inline_admin_formset.formset.can_delete and inline_admin_formset.has_delete_permission %}
+          <td class="delete">{% if inline_admin_form.original %}{{ inline_admin_form.deletion_field.field }}{% endif %}</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</fieldset>
+</div>

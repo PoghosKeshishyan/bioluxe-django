@@ -1,9 +1,26 @@
-<div id="json-key-value-widget">
-  {% for pair in widget.value %}
-    <div style="margin-bottom:5px;">
-      <input type="text" readonly name="{{ widget.name }}_key" value="{{ pair.key|escape }}" placeholder="Key" style="width:30px;"/>
-      <input type="text" name="{{ widget.name }}_value" value="{{ pair.value|escape }}" placeholder="Value" style="width:300px;"/>
-    </div>
-  {% endfor %}
-</div>
 
+ <div id="json-key-value-widget">
+  {% if widget.value %}
+    {% for pair in widget.value %}
+      <div style="margin-bottom:5px;">
+        <input type="text" name="{{ widget.name }}_key" value="{{ pair.key|default_if_none:''|escape }}" placeholder="Key" style="width:30px;"/>
+        <input type="text" name="{{ widget.name }}_value" value="{{ pair.value|default_if_none:''|escape }}" placeholder="Value" style="width:300px;"/>
+      </div>
+    {% endfor %}
+  {% else %}
+      <div style="margin-bottom:5px;">
+        <input type="text" name="{{ widget.name }}_key" placeholder="Key" value='en' style="width:30px;" readonly/>
+        <input type="text" name="{{ widget.name }}_value" placeholder="Value" style="width:300px;"/>
+      </div>
+
+      <div style="margin-bottom:5px;">
+        <input type="text" name="{{ widget.name }}_key" placeholder="Key" value='ru' style="width:30px;" readonly/>
+        <input type="text" name="{{ widget.name }}_value" placeholder="Value" style="width:300px;"/>
+      </div>
+
+      <div style="margin-bottom:5px;">
+        <input type="text" name="{{ widget.name }}_key" placeholder="Key" value='am' style="width:30px;" readonly/>
+        <input type="text" name="{{ widget.name }}_value" placeholder="Value" style="width:300px;"/>
+      </div>
+  {% endif %}
+</div>

@@ -14,7 +14,7 @@ from header.views import (
 from footer.views import FooterInfoViewSet, FooterSocialLinkViewSet, FooterPrivacyPolicyViewSet
 from global_data.views import (
     LogoViewSet, CategoryViewSet, CategoriesLinkViewSet, ItemViewSet,
-    ItemHeaderViewSet, ItemPageFieldViewSet,
+    ItemAboutDeliveryViewSet, ItemHeaderViewSet, ItemPageFieldViewSet,
     ItemLinkViewSet, ItemFaqHeadingViewSet, ItemFaqViewSet,
     LikedProductHeadingViewSet, InfoAboutDeliveryViewSet
 )
@@ -88,6 +88,7 @@ router.register(r"categories", CategoryViewSet, basename="global-categories")
 router.register(r"categories_link", CategoriesLinkViewSet, basename="global-categories-links")
 router.register(r"items", ItemViewSet, basename="global-items")
 router.register(r"popular/items", PopularItemViewSet, basename="popular-items")
+router.register(r'about-delivery/items', ItemAboutDeliveryViewSet)
 router.register(r"items_header", ItemHeaderViewSet, basename="global-item-headers")
 router.register(r"item_page_fields", ItemPageFieldViewSet, basename="global-item-page-fields")
 router.register(r"item_link", ItemLinkViewSet, basename="global-item-links")

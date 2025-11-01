@@ -4,13 +4,13 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from .models import (
-    Logo, Category, Categories_link, Item, ProductImage, ItemHeader,
+    Logo, Category, Categories_link, Item, ItemAboutDelivery, ProductImage, ItemHeader,
     ItemPageField, ItemLink, ItemFaqHeading, ItemFaq,
     LikedProductHeading, InfoAboutDelivery
 )
 from .serializers import (
     LogoSerializer, CategorySerializer, CategoriesLinkSerializer,
-    ItemSerializer, ProductImageSerializer, ItemHeaderSerializer,
+    ItemSerializer, ItemAboutDeliverySerializer, ProductImageSerializer, ItemHeaderSerializer,
     ItemPageFieldSerializer, ItemLinkSerializer, ItemFaqHeadingSerializer,
     ItemFaqSerializer, LikedProductHeadingSerializer, InfoAboutDeliverySerializer
 )
@@ -66,11 +66,17 @@ class ItemViewSet(viewsets.ReadOnlyModelViewSet):
             "relatedItems": related_serializer.data
         })
 
-    @action(detail=False, methods=['get'], url_path='latest')
-    def get_latest_items(self, request):
-        latest_items = Item.objects.all().order_by('-created_at')[:4]
-        serializer = self.get_serializer(latest_items, many=True)
+    @action(detail=False, methods=['get'], url_path='new-arrivals')
+    def get_new_arrivals_items(self, request):
+        items = Item.objects.filter(is_new_arrival=True)
+        serializer = self.get_serializer(items, many=True)
         return Response(serializer.data)
+    
+   
+class ItemAboutDeliveryViewSet(viewsets.ModelViewSet):
+    queryset = ItemAboutDelivery.objects.all()
+    serializer_class = ItemAboutDeliverySerializer
+    
     
 class ProductImageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ProductImage.objects.all()

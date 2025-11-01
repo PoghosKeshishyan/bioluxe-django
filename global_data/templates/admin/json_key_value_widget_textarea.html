@@ -1,0 +1,25 @@
+<div id="json-key-value-widget">
+  {% if widget.value %}
+    {% for pair in widget.value %}
+      <div style="margin-bottom:10px;">
+        <input type="text" name="{{ widget.name }}_key" value="{{ pair.key|default_if_none:''|escape }}" placeholder="Key" style="width:300px; margin-bottom: 5px; background: #ddd;" readonly /> <br>
+        <textarea name="{{ widget.name }}_value" placeholder="Value" style="width:300px; height: 150px;">{{ pair.value|default_if_none:''|escape }}</textarea>
+      </div>
+    {% endfor %}
+  {% else %}
+      <div style="margin-bottom:10px;">
+        <input type="text" name="{{ widget.name }}_key" value="en" placeholder="Key" style="width:300px; margin-bottom: 5px; background: #ddd;" readonly/> <br>
+        <textarea name="{{ widget.name }}_value" placeholder="Value" style="width:300px; height: 150px;"></textarea>
+      </div>
+
+      <div style="margin-bottom:5px;">
+        <input type="text" name="{{ widget.name }}_key" value="ru" placeholder="Key" style="width:300px; margin-bottom: 5px; background: #ddd;" readonly /> <br>
+        <textarea name="{{ widget.name }}_value" placeholder="Value" style="width:300px; height: 150px;"></textarea>
+      </div>
+
+      <div style="margin-bottom:5px;">
+        <input type="text" name="{{ widget.name }}_key" value="am" placeholder="Key" style="width:300px; margin-bottom: 5px; background: #ddd;" readonly /> <br>
+        <textarea name="{{ widget.name }}_value" placeholder="Value" style="width:300px; height: 150px;"></textarea>
+      </div>
+  {% endif %}
+</div>

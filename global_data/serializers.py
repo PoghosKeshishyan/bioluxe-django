@@ -1,15 +1,15 @@
 # global_data/serializers.py
 from rest_framework import serializers
 from .models import (
-    Logo, Category, Categories_link, Item, ProductImage, ItemHeader,
-    ItemPageField, ItemLink, ItemFaqHeading, ItemFaq,
-    LikedProductHeading, InfoAboutDelivery
+    Logo, Category, Categories_link, Item, ItemAboutDelivery, 
+    ProductImage, ItemHeader,ItemPageField, ItemLink, 
+    ItemFaqHeading, ItemFaq, LikedProductHeading, InfoAboutDelivery
 )
 
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
-        fields = ['id', 'image', 'product']
+        fields = ['id', 'image', 'is_general', 'product']
 
 class ItemSerializer(serializers.ModelSerializer):
     images = ProductImageSerializer(many=True, read_only=True)
@@ -17,6 +17,13 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = '__all__'
+   
+   
+class ItemAboutDeliverySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemAboutDelivery
+        fields = '__all__'     
+
 
 class LogoSerializer(serializers.ModelSerializer):
     class Meta:
